@@ -74,10 +74,6 @@ Visit `[http://localhost:5000]`or `http://127.0.0.1:5000/` in your browser to ac
 - TensorFlow
 - Scikit-learn
 
-## Project Demonstration
-
-<video src="static/images/HACKATHON - Made with Clipchamp.mp4" align="right" height="300px" controls>
-
 ## Contributors
 
 - Aditya Gella [https://github.com/vihasreddy58]
