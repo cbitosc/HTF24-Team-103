@@ -19,6 +19,193 @@
         font-size: 1.3rem;
       }
     </style>
+    <style>
+      /* General Styles */
+      body {
+        background-color: #2c3e50; /* Dark background color */
+        color: white; /* White text for better contrast */
+        font-family: Arial, sans-serif; /* Clean sans-serif font */
+        margin: 0; /* Remove default margin */
+        padding: 0; /* Remove default padding */
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: #34495e; /* Header background color */
+      }
+
+      .navbar a {
+        color: white; /* White text for links */
+        text-decoration: none; /* Remove underline */
+        padding: 0.5rem 1rem; /* Padding for links */
+        transition: background-color 0.3s; /* Smooth background color transition */
+      }
+
+      .navbar a:hover {
+        background-color: #2980b9; /* Change background color on hover */
+      }
+
+      .header .logo {
+        font-size: 1.5rem; /* Logo font size */
+      }
+
+      .book {
+        padding: 2rem; /* Padding for the book section */
+        text-align: center; /* Center text */
+      }
+
+      .glass-row {
+        background: rgba(255, 255, 255, 0.1); /* Glass effect */
+        backdrop-filter: blur(10px); /* Blurring background */
+        border-radius: 10px; /* Rounded corners */
+        padding: 2rem; /* Padding inside the glass effect */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow effect */
+      }
+
+      h1.heading {
+        font-size: 2rem; /* Heading size */
+        margin-bottom: 1.5rem; /* Space below heading */
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem; /* Space below form group */
+      }
+
+      .form-check-container {
+        display: flex;
+        flex-direction: column; /* Stack checkboxes vertically */
+        align-items: flex-start; /* Align items to the start */
+      }
+
+      .form-check {
+        margin-bottom: 0.5rem; /* Space between checkboxes */
+      }
+
+      .btn-primary {
+        background-color: #16a085; /* Button color */
+        color: white; /* Button text color */
+        border: none; /* Remove border */
+        border-radius: 5px; /* Rounded corners */
+        padding: 10px 20px; /* Padding for button */
+        cursor: pointer; /* Pointer cursor on hover */
+        transition: background-color 0.3s; /* Smooth transition */
+      }
+
+      .btn-primary:hover {
+        background-color: #1abc9c; /* Button hover color */
+      }
+
+      /* Chatbot Styles */
+      .chatbot-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #16a085;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(22, 158, 133, 0.5);
+        transition: background-color 0.3s; /* Smooth transition */
+      }
+
+      .chatbot-button:hover {
+        background-color: #1abc9c; /* Change color on hover */
+      }
+
+      .chat-container {
+        display: none; /* Hide the chat by default */
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 400px;
+        max-height: 500px;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(22, 158, 133, 0.5);
+        overflow-y: auto;
+      }
+
+      .chat-header {
+        background-color: #16a085;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
+
+      .chat-body {
+        padding: 10px;
+        max-height: 400px; /* Max height for chat body */
+        overflow-y: auto; /* Enable scrolling */
+      }
+
+      .chat-message {
+        margin: 5px 0;
+        padding: 8px;
+        border-radius: 4px;
+        max-width: 80%; /* Limit width of messages */
+      }
+
+      .user-message {
+        background-color: #e1f5fe;
+        align-self: flex-end;
+      }
+
+      .bot-message {
+        background-color: #f1f8e9;
+        align-self: flex-start;
+      }
+
+      .chat-input {
+        display: flex;
+        padding: 10px;
+        border-top: 1px solid #ccc;
+      }
+
+      .chat-input input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .chat-input button {
+        background-color: #16a085;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 10px;
+        margin-left: 5px;
+        cursor: pointer;
+      }
+
+      .chat-input button:hover {
+        background-color: #1abc9c; /* Button hover color */
+      }
+
+      /* Footer Styles */
+      .footer {
+        text-align: center; /* Center text */
+        padding: 1rem; /* Padding for footer */
+        background-color: #34495e; /* Footer background */
+        position: relative; /* Position relative for footer */
+        bottom: 0; /* Stick to bottom */
+        width: 100%; /* Full width */
+      }
+
+      .credit {
+        color: white; /* White text for credit */
+      }
+    </style>
   </head>
 
   <body>

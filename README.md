@@ -74,12 +74,15 @@ Visit `[http://localhost:5000]`or `http://127.0.0.1:5000/` in your browser to ac
 - TensorFlow
 - Scikit-learn
 
+## Project Demonstration
+
+<video src="static/images/HACKATHON - Made with Clipchamp.mp4" align="right" height="300px" controls>
 ## Contributors
 
-- Aditya Gella
-- Ashish Reddy Bokka
-- Vihas Reddy Sheelam
-- Daivik Reddy Bokka
-- Mukesh Mun Vardhan Chevula
+- Aditya Gella [https://github.com/vihasreddy58]
+- Ashish Reddy Bokka [https://github.com/BAshishReddy]
+- Vihas Reddy Sheelam [https://github.com/vihasreddy58]
+- Daivik Reddy Bokka [https://github.com/BokkaDaivikReddy]
+- Mukesh Mun Vardhan Chevula [https://github.com/mukesh-chevula]
 
 Feel free to contribute to the project by opening issues or creating pull requests.
