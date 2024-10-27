@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AViD Minds</title>
+    <link rel="icon" href="./static/images/heart-pulse-solid.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./static/css/style.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <a href="" class="logo"><i class="fas fa-heartbeat"></i> AViD Minds</a>
+      <nav class="navbar">
+        {% if username %}
+        <a href="">Home</a>
+        <a href="">services</a>
+        <a href="">Blogs</a>
+        <a href="">about</a>
+        <a href="{{url_for('logout')}}">Logout</a>
+        <a href=""><span class="fas fa-user"></span></a>
+        <a href="">{{username}}</a>
+        {% else %}
+        <a href="{{url_for('login')}}">Login</a>
+        {% endif %}
+      </nav>
+
+      <div id="menu-btn" class="fas fa-bars"></div>
+    </header>
+
+    <section class="home" id="home">
+      <div class="image">
+        <img src="../static/images/doctors-animate.svg" alt="home-page" />
+      </div>
+      <div class="content">
+        <h3 style="color: black">
+          Welcome to <span style="color: #16a085">AViD Minds</span> . <br />
+          <span style="font-size: 4rem"
+            >your Personalized Healthcare telemedicine assistant platform.</span
+          >
+        </h3>
+        <!-- <h3>stay healthy</h3> -->
+        <p>
+          Artificial Intelligence (AI) has revolutionized the field of
+          telemedicine and healthcare, offering innovative solutions to enhance
+          patient care, improve efficiency, and streamline various processes.
+        </p>
+        <a href="{{url_for('login')}}" class="btn-home"
+          >Learn more<span class="fas fa-chevron-right"></span
+        ></a>
+      </div>
+    </section>
+
+    <h1 style="margin-top: 45px; color: black" class="heading">
+      What we<span> Provide ?</span>
+    </h1>
+
+    <section class="icons-container">
+      <div class="glass">
+        <i class="fas fa-user-md"></i>
+        <h3 style="color: black">140+</h3>
+        <p style="color: black">Personalized Healthcare</p>
+      </div>
+      <div class="glass">
+        <i class="fa-solid fa-video"></i>
+        <h3 style="color: black">1400+</h3>
+        <p style="color: black">Remote Patient Monitoring</p>
+      </div>
+      <div class="glass">
+        <i class="fas fa-users"></i>
+        <h3 style="color: black">500+</h3>
+        <p style="color: black">Health Equity</p>
+      </div>
+      <div class="glass">
+        <i class="fas fa-file"></i>
+        <h3 style="color: black">400+</h3>
+        <p style="color: black">Wellness Promotion</p>
+      </div>
+    </section>
+
+    {% if username %}
+    <section class="services" id="services">
+      <h1 class="heading">services & <span>Features</span></h1>
+      <div class="box-container">
+        <div class="glass-box">
+          <i class="fas fa-notes-medical"></i>
+          <h3>free checkups</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
+            at!
+          </p>
+          <a href="" class="btn">
+            learn more <span class="fas fa-chevron-right"></span
+          ></a>
+        </div>
+        <div class="glass-box">
+          <i class="fas fa-ambulance"></i>
+          <h3>24/7 Ambulance</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
+            at!
+          </p>
+          <a href="" class="btn">
+            learn more <span class="fas fa-chevron-right"></span
+          ></a>
+        </div>
+        <div class="glass-box">
+          <i class="fas fa-user-md"></i>
+          <h3>experts doctors</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
+            at!
+          </p>
+          <a href="" class="btn">
+            learn more <span class="fas fa-chevron-right"></span
+          ></a>
+        </div>
+        <div class="glass-box">
+          <i class="fas fa-pills"></i>
+          <h3>medicines</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
+            at!
+          </p>
+          <a href="" class="btn">
+            learn more <span class="fas fa-chevron-right"></span
+          ></a>
+        </div>
+        <div class="glass-box">
+          <i class="fas fa-procedures"></i>
+          <h3>bed facility</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
+            at!
+          </p>
+          <a href="" class="btn">
+            learn more <span class="fas fa-chevron-right"></span
+          ></a>
+        </div>
+        <div class="glass-box">
+          <i class="fas fa-heartbeat"></i>
+          <h3>total care</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
+            at!
+          </p>
+          <a href="" class="btn">
+            learn more <span class="fas fa-chevron-right"></span
+          ></a>
+        </div>
+        <div class="glass-box">
+          <i class="fas fa-heartbeat"></i>
+          <h3>total care</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
+            at!
+          </p>
+          <a href="" class="btn">
+            learn more <span class="fas fa-chevron-right"></span
+          ></a>
+        </div>
+        <div class="glass-box">
+          <i class="fas fa-heartbeat"></i>
+          <h3>total care</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
+            at!
+          </p>
+          <a href="" class="btn">
+            learn more <span class="fas fa-chevron-right"></span
+          ></a>
+        </div>
+        <div class="glass-box">
+          <i class="fas fa-heartbeat"></i>
+          <h3>total care</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
+            at!
+          </p>
+          <a href="" class="btn">
+            learn more <span class="fas fa-chevron-right"></span
+          ></a>
+        </div>
+        <div class="glass-box">
+          <i class="fas fa-heartbeat"></i>
+          <h3>total care</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
+            at!
+          </p>
+          <a href="" class="btn">
+            learn more <span class="fas fa-chevron-right"></span
+          ></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="doctors" id="doctors">
+      <h1 class="heading">our <span> Doctors</span></h1>
+      <div class="box-container">
+        <div class="glass-box">
+          <img src="../static/images/doc2.jpg" alt="" />
+          <h3>doctor</h3>
+          <span>expert</span>
+          <div class="share">
+            <a href="" class="fab fa-facebook-f"></a>
+            <a href="" class="fab fa-twitter"></a>
+            <a href="" class="fab fa-linkedin"></a>
+            <a href="" class="fab fa-instagram"></a>
+          </div>
+        </div>
+        <div class="glass-box">
+          <img src="../static/images/doc1.jpg" alt="" />
+          <h3>doctor</h3>
+          <span>expert</span>
+          <div class="share">
+            <a href="" class="fab fa-facebook-f"></a>
+            <a href="" class="fab fa-twitter"></a>
+            <a href="" class="fab fa-linkedin"></a>
+            <a href="" class="fab fa-instagram"></a>
+          </div>
+        </div>
+        <div class="glass-box">
+          <img src="../static/images/doc3.jpeg" alt="" />
+          <h3>doctor</h3>
+          <span>expert</span>
+          <div class="share">
+            <a href="" class="fab fa-facebook-f"></a>
+            <a href="" class="fab fa-twitter"></a>
+            <a href="" class="fab fa-linkedin"></a>
+            <a href="" class="fab fa-instagram"></a>
+          </div>
+        </div>
+        <div class="glass-box">
+          <img src="../static/images/doc4.jpg" alt="" />
+          <h3>doctor</h3>
+          <span>expert</span>
+          <div class="share">
+            <a href="" class="fab fa-facebook-f"></a>
+            <a href="" class="fab fa-twitter"></a>
+            <a href="" class="fab fa-linkedin"></a>
+            <a href="" class="fab fa-instagram"></a>
+          </div>
+        </div>
+        <div class="glass-box">
+          <img src="../static/images/doc5.jpeg" alt="" />
+          <h3>doctor</h3>
+          <span>expert</span>
+          <div class="share">
+            <a href="" class="fab fa-facebook-f"></a>
+            <a href="" class="fab fa-twitter"></a>
+            <a href="" class="fab fa-linkedin"></a>
+            <a href="" class="fab fa-instagram"></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="blogs" id="blogs">
+      <h1 class="heading">our <span> Blogs</span></h1>
+      <div class="box-container">
+        <div class="glass-box">
+          <div class="image">
+            <img src="../static/images/bgimg2.jpg" alt="" />
+          </div>
+          <div class="content">
+            <div class="icon">
+              <a href=""><i class="fas fa-calendar"></i> 1st may, 2021</a>
+            </div>
+            <h3>blog title</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit,
+              nihil.
+            </p>
+            <a href="" class="btn"
+              >learn more <span class="fas fa-chevron-right"></span
+            ></a>
+          </div>
+        </div>
+        <div class="glass-box">
+          <div class="image">
+            <img src="../static/images/bgimg2.jpg" alt="" />
+          </div>
+          <div class="content">
+            <div class="icon">
+              <a href=""><i class="fas fa-calendar"></i> 1st may, 2021</a>
+            </div>
+            <h3>blog title</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit,
+              nihil.
+            </p>
+            <a href="" class="btn"
+              >learn more <span class="fas fa-chevron-right"></span
+            ></a>
+          </div>
+        </div>
+        <div class="glass-box">
+          <div class="image">
+            <img src="../static/images/bgimg2.jpg" alt="" />
+          </div>
+          <div class="content">
+            <div class="icon">
+              <a href=""><i class="fas fa-calendar"></i> 1st may, 2021</a>
+            </div>
+            <h3>blog title</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit,
+              nihil.
+            </p>
+            <a href="" class="btn"
+              >learn more <span class="fas fa-chevron-right"></span
+            ></a>
+          </div>
+        </div>
+        <div class="glass-box">
+          <div class="image">
+            <img src="../static/images/bgimg2.jpg" alt="" />
+          </div>
+          <div class="content">
+            <div class="icon">
+              <a href=""><i class="fas fa-calendar"></i> 1st may, 2021</a>
+            </div>
+            <h3>blog title</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit,
+              nihil.
+            </p>
+            <a href="" class="btn"
+              >learn more <span class="fas fa-chevron-right"></span
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <h1 class="heading">About <span> Us </span></h1>
+      <div class="row">
+        <div class="image">
+          <img src="../static/images/about-us-page-animate.svg" alt="" />
+        </div>
+        <div class="content">
+          <h3>we take care of your healthy life.</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas error
+            sit id dignissimos modi quos. Cumque saepe deserunt officia
+            doloremque.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis
+            aperiam dolor eum suscipit quidem voluptate consequatur quam labore,
+            esse, atque incidunt ab officiis dolorum libero quos?
+          </p>
+          <a href="" class="btn"
+            >learn more <i class="fas fa-chevron-right"></i
+          ></a>
+        </div>
+      </div>
+      <style>
+        .chatbot-button {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background-color: #16a085;
+          color: white;
+          border: none;
+          border-radius: 50%;
+          width: 60px;
+          height: 60px;
+          font-size: 24px;
+          cursor: pointer;
+          box-shadow: 0 4px 10px rgba(22, 158, 133, 0.5);
+        }
+
+        .chat-container {
+          display: none; /* Hide the chat by default */
+          position: fixed;
+          bottom: 80px;
+          right: 20px;
+          width: 400px;
+          max-height: 500px;
+          background-color: white;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          box-shadow: 0 4px 10px rgba(22, 158, 133, 0.5);
+          overflow-y: auto;
+        }
+
+        .chat-header {
+          background-color: #16a085;
+          color: white;
+          padding: 10px;
+          text-align: center;
+          border-top-left-radius: 8px;
+          border-top-right-radius: 8px;
+        }
+
+        .chat-body {
+          padding: 10px;
+        }
+
+        .chat-message {
+          margin: 5px 0;
+          padding: 8px;
+          border-radius: 4px;
+        }
+
+        .user-message {
+          background-color: #e1f5fe;
+          align-self: flex-end;
+        }
+
+        .bot-message {
+          background-color: #f1f8e9;
+          align-self: flex-start;
+        }
+
+        .chat-input {
+          display: flex;
+          padding: 10px;
+          border-top: 1px solid #ccc;
+        }
+
+        .chat-input input {
+          flex: 1;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+
+        .chat-input button {
+          background-color: #16a085;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          padding: 10px;
+          margin-left: 5px;
+          cursor: pointer;
+        }
+      </style>
+
+      <button class="chatbot-button" id="chatbot-toggle">
+        <i class="fas fa-comment-dots"></i>
+      </button>
+
+      <!-- Chat Container -->
+      <div class="chat-container" id="chat-container">
+        <div class="chat-header">
+          <h3>Chat with us!</h3>
+        </div>
+        <div class="chat-body" id="chat-body">
+          <!-- Chat messages will be appended here -->
+        </div>
+        <div class="chat-input">
+          <input
+            type="text"
+            id="chat-input"
+            placeholder="Type your message..."
+          />
+          <button id="send-button">Send</button>
+        </div>
+      </div>
+
+      <script>
+        // Toggle Chat Window
+        document.getElementById("chatbot-toggle").onclick = function () {
+          const chatContainer = document.getElementById("chat-container");
+          if (
+            chatContainer.style.display === "none" ||
+            chatContainer.style.display === ""
+          ) {
+            chatContainer.style.display = "block";
+          } else {
+            chatContainer.style.display = "none";
+          }
+        };
+
+        // Send Message Handler
+        document.getElementById("send-button").onclick = async function () {
+          const input = document.getElementById("chat-input");
+          const message = input.value;
+
+          console.log(message);
+
+          if (message.trim() !== "") {
+            try {
+              // Send POST request to server
+              const res = await fetch("/chat1", {
+                method: "POST",
+                body: JSON.stringify({ query: message }),
+                headers: { "Content-Type": "application/json" },
+              });
+
+              if (!res.ok) {
+                throw new Error("Server responded with an error.");
+              }
+
+              const data = await res.json(); // Await response JSON
+
+              appendMessage("user", message); // Append user message
+              input.value = ""; // Clear input field
+
+              console.log(data); // Log the response data
+
+              appendMessage("bot", data.response); // Append bot response from server
+            } catch (error) {
+              console.error("Error sending message:", error);
+              appendMessage(
+                "bot",
+                "An error occurred. Please try again later."
+              );
+            }
+          }
+        };
+
+        // Function to Append Chat Messages
+        function appendMessage(sender, message) {
+          const chatBody = document.getElementById("chat-body");
+          const messageDiv = document.createElement("div");
+          messageDiv.className =
+            "chat-message " +
+            (sender === "user" ? "user-message" : "bot-message");
+          messageDiv.textContent = message;
+          chatBody.appendChild(messageDiv);
+          chatBody.scrollTop = chatBody.scrollHeight; // Scroll to the bottom
+        }
+      </script>
+    </section>
+<section class="footer">
+      <div class="box-container">
+        <div class="box" style="margin-left: 50px;">
+          <h3>quick links</h3>
+          <a href="{{url_for('index')}}#home"
+            ><i class="fas fa-chevron-right"></i> home</a
+          >
+          <a href="{{url_for('index')}}#services"
+            ><i class="fas fa-chevron-right"></i> services</a
+          >
+          <a href="{{url_for('index')}}#book"
+            ><i class="fas fa-chevron-right"></i>book</a
+          >
+          <a href="{{url_for('index')}}#scans"
+            ><i class="fas fa-chevron-right"></i> scans</a
+          >
+          <a href="{{url_for('index')}}#blogs"
+            ><i class="fas fa-chevron-right"></i> blogs</a
+          >
+          <a href="{{url_for('index')}}#about"
+            ><i class="fas fa-chevron-right"></i> about</a
+          >
+        </div>
+
+
+      <div class="credit">made with 💚 | AVID Minds @ 2024</div>
+    </section>
+
+    {% else %}
+
+    <div class="glass-hide">
+      <br /><br /><br />
+      <h1 class="heading">want to <span>know more ?</span></h1>
+      <!-- <h1 class="heading">Explore our <span>all Features !</span></h1> -->
+      <a href="{{url_for('login')}}" class="btn" style="font-weight: 800"
+        >Login to explore<span class="fas fa-chevron-right"></span
+      ></a>
+    </div>
+
+    {% endif %}
+
+    <script src="./static/js/script.js"></script>
+  </body>
+</html>

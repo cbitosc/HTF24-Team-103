@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AViD Minds</title>
+    <link rel="icon" href="./static/images/heart-pulse-solid.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./static/css/style.css" />
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <script src="./static/js/script.js"></script>
+    <style>
+      .articles {
+        padding: 2rem 0;
+        text-align: center;
+      }
+      .articles {
+        padding: 3rem 0; /* Increased padding for more space */
+        text-align: center;
+        /* Light background color for contrast */
+        border-radius: 8px; /* Rounded corners */
+      }
+
+      .articles h2 {
+        font-size: 2.5rem; /* Increased font size for the title */
+        margin-bottom: 1rem; /* Space below the title */
+        color: #171616;
+        font-weight: bolder; /* Darker text for better readability */
+      }
+
+      .articles ul {
+        list-style: none; /* Remove default bullet points */
+        padding: 0; /* Remove default padding */
+      }
+
+      .articles li {
+        margin: 1.5rem 0; /* More space between items */
+      }
+
+      .articles a {
+        text-decoration: none; /* Remove underline */
+        color: #007bff; /* Link color */
+        font-size: 1.5rem; /* Increased font size for links */
+        transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for effects */
+      }
+
+      .articles a:hover {
+        color: #0056b3; /* Darker color on hover */
+        transform: scale(1.05); /* Slightly enlarge on hover */
+      }
+
+      label {
+        color: white;
+        font-size: 1.3rem;
+      }
+
+      p {
+        color: white;
+        font-size: 2rem;
+      }
+
+      #plot {
+        width: 100%;
+        margin: auto;
+      }
+      body {
+        background-color: #ffffff;
+        color: #000000; /* Changed to black for general text */
+        font-family: Arial, sans-serif;
+      }
+
+      header {
+        background-color: #ffffff;
+      }
+
+      h1.heading {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        color: #000000; /* Changed to black */
+      }
+
+      label {
+        color: #000000; /* Changed to black */
+        font-size: 1.5rem;
+        display: inline-block;
+        width: 30%;
+        vertical-align: top;
+      }
+
+      p {
+        color: #000000; /* Changed to black */
+        font-size: 2rem;
+      }
+
+      #plot {
+        width: 100%;
+        margin: auto;
+      }
+
+      select {
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+        width: calc(70% - 1rem);
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #16a085; /* Green background */
+        color: #ffffff; /* White font color for better contrast */
+      }
+
+      .glass-row {
+        background-color: #fefefe;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(22, 158, 133, 0.5); /* Shadow color: #16a085 */
+      }
+
+      .btn {
+        background-color: #16a085;
+        color: #16a085; /* Change this line to set the text color to the desired shade */
+        padding: 0.5rem 1rem;
+        border: 2px solid #16a085;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+        box-shadow: 0 4px 8px rgba(22, 158, 133, 0.5);
+      }
+      .btn:hover {
+        background-color: #218838;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(22, 158, 133, 0.7);
+      }
+
+      .dropdown-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      #disease-steps {
+        list-style-type: disc; /* or any other desired type */
+        padding-left: 20px; /* Ensures proper indentation */
+      }
+
+      #disease-steps li {
+        display: list-item; /* Ensure li is displayed as a list item */
+        color: black; /* Set a contrasting text color */
+      }
+
+      /* Optionally, reset marker styles */
+      #disease-steps li::marker {
+        color: black; /* Ensure markers are visible */
+      }
+      #disease-steps li {
+        font-size: 18px; /* Adjust the size as needed */
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      <a href="{{url_for('index')}}" class="logo" style="color: white;"
+        ><i class="fas fa-heartbeat"></i> AViD Minds</a
+      >
+      <nav class="navbar">
+        {% if username %}
+        <a href="{{url_for('index')}}#home">Home</a>
+        <a href="{{url_for('index')}}#services">services</a>
+        <a href="{{url_for('index')}}#book">Book</a>
+        <a href="{{url_for('index')}}#scans">Scans</a>
+        <a href="{{url_for('index')}}#blogs">Blogs</a>
+        <a href="{{url_for('index')}}#about">about</a>
+        <a href="{{url_for('profile')}}"><span class="fas fa-user"></span></a>
+        {% else %}
+        <a href="{{url_for('login')}}">Login</a>
+        {% endif %}
+      </nav>
+
+      <div id="menu-btn" class="fas fa-bars"></div>
+    </header>
+    {% if disease %}
+    <section class="book" id="book">
+      <h1 class="heading" style="margin-top: 8rem">
+        <span>Disease </span>Prediction Result
+      </h1>
+      <div class="glass-row" style="margin-top: 80px; justify-content: center">
+        <p>
+          Predicted Disease: <span id="predicted-disease">{{ disease }}</span>
+        </p>
+        <div
+          id="disease-info"
+          style="margin-top: 20px; text-align: left; color: white"
+        >
+          <p id="disease-description"></p>
+          <ul id="disease-steps"></ul>
+        </div>
+      </div>
+    </section>
+
+    {% else %}
+    <section class="book" id="book">
+      <h1 class="heading" style="margin-top: 8rem">
+        <span>Disease</span> Predictor
+      </h1>
+      <div class="glass-row" style="margin-top: 40px">
+        <form
+          action="{{ url_for('disease_predict') }}"
+          name="SymptomForm"
+          id="SymForm"
+          method="POST"
+        >
+          <a href="{{url_for('index')}}" class="logo"
+            ><i class="fas fa-heartbeat"></i> AViD Minds</a
+          ><br /><br />
+          <label for="Symptom1">Symptom 1:</label>
+          <select required type="text" name="Symptom1">
+            <datalist id="symp">
+              {% for symp in symptoms %}
+              <option value="{{symp}}">{{symp}}</option>
+              {% endfor %}
+            </datalist></select
+          ><br /><br />
+          <label for="Symptom2">Symptom 2:</label>
+          <select type="text" name="Symptom2" required>
+            <datalist id="symp">
+              {% for symp in symptoms %}
+              <option value="{{symp}}">{{symp}}</option>
+              {% endfor %}
+            </datalist></select
+          ><br /><br />
+          <label for="Symptom3">Symptom 3:</label>
+          <select required type="text" name="Symptom3">
+            <datalist id="symp">
+              {% for symp in symptoms %}
+              <option value="{{symp}}">{{symp}}</option>
+              {% endfor %}
+            </datalist></select
+          ><br /><br />
+          <label for="Symptom4">Symptom 4:</label>
+          <select required type="text" name="Symptom4">
+            <datalist id="symp">
+              {% for symp in symptoms %}
+              <option value="{{symp}}">{{symp}}</option>
+              {% endfor %}
+            </datalist></select
+          ><br /><br />
+          <label for="Symptom5">Symptom 5:</label>
+          <select required type="text" name="Symptom5">
+            <datalist id="symp">
+              {% for symp in symptoms %}
+              <option value="{{symp}}">{{symp}}</option>
+              {% endfor %}
+            </datalist></select
+          ><br /><br />
+          <input type="submit" value="Predict" class="btn" name="form" />
+          <p style="color: white; font-size: 1.3rem; margin-top: 2rem">
+            By continuing, you agree to AViD Minds's
+            <a style="color: #16a085" href="{{url_for('policy')}}"
+              >Terms of Service</a
+            >
+          </p>
+        </form>
+      </div>
+    </section>
+    {% endif %}
+    <section class="articles">
+      <h2>Learn More About Various Symptoms</h2>
+      <ul>
+        <li>
+          <a href="https://www.mayoclinic.org/symptoms" target="_blank">
+            Mayo Clinic - Symptoms A-Z
+          </a>
+        </li>
+        <li>
+          <a href="https://symptoms.webmd.com/" target="_blank">
+            WebMD Symptom Checker
+          </a>
+        </li>
+        <li>
+          <a href="https://medlineplus.gov/" target="_blank">
+            MedlinePlus - Health Topics
+          </a>
+        </li>
+        <li>
+          <a href="https://www.merckmanuals.com/professional" target="_blank">
+            Merck Manual - Professional Version
+          </a>
+        </li>
+      </ul>
+      <style>
+        .chatbot-button {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background-color: #16a085;
+          color: white;
+          border: none;
+          border-radius: 50%;
+          width: 60px;
+          height: 60px;
+          font-size: 24px;
+          cursor: pointer;
+          box-shadow: 0 4px 10px rgba(22, 158, 133, 0.5);
+        }
+
+        .chat-container {
+          display: none; /* Hide the chat by default */
+          position: fixed;
+          bottom: 80px;
+          right: 20px;
+          width: 400px;
+          max-height: 500px;
+          background-color: white;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          box-shadow: 0 4px 10px rgba(22, 158, 133, 0.5);
+          overflow-y: auto;
+        }
+
+        .chat-header {
+          background-color: #16a085;
+          color: white;
+          padding: 10px;
+          text-align: center;
+          border-top-left-radius: 8px;
+          border-top-right-radius: 8px;
+        }
+
+        .chat-body {
+          padding: 10px;
+        }
+
+        .chat-message {
+          margin: 5px 0;
+          padding: 8px;
+          border-radius: 4px;
+        }
+
+        .user-message {
+          background-color: #e1f5fe;
+          align-self: flex-end;
+        }
+
+        .bot-message {
+          background-color: #f1f8e9;
+          align-self: flex-start;
+        }
+
+        .chat-input {
+          display: flex;
+          padding: 10px;
+          border-top: 1px solid #ccc;
+        }
+
+        .chat-input input {
+          flex: 1;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+
+        .chat-input button {
+          background-color: #16a085;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          padding: 10px;
+          margin-left: 5px;
+          cursor: pointer;
+        }
+      </style>
+
+      <button class="chatbot-button" id="chatbot-toggle">
+        <i class="fas fa-comment-dots"></i>
+      </button>
+
+      <!-- Chat Container -->
+      <div class="chat-container" id="chat-container">
+        <div class="chat-header">
+          <h3>Chat with us!</h3>
+        </div>
+        <div class="chat-body" id="chat-body">
+          <!-- Chat messages will be appended here -->
+        </div>
+        <div class="chat-input">
+          <input
+            type="text"
+            id="chat-input"
+            placeholder="Type your message..."
+          />
+          <button id="send-button">Send</button>
+        </div>
+      </div>
+
+      <script>
+        // Toggle Chat Window
+        document.getElementById("chatbot-toggle").onclick = function () {
+          const chatContainer = document.getElementById("chat-container");
+          if (
+            chatContainer.style.display === "none" ||
+            chatContainer.style.display === ""
+          ) {
+            chatContainer.style.display = "block";
+          } else {
+            chatContainer.style.display = "none";
+          }
+        };
+
+        // Send Message Handler
+        document.getElementById("send-button").onclick = async function () {
+          const input = document.getElementById("chat-input");
+          const message = input.value;
+
+          console.log(message);
+
+          if (message.trim() !== "") {
+            try {
+              // Send POST request to server
+              const res = await fetch("/chat1", {
+                method: "POST",
+                body: JSON.stringify({ query: message }),
+                headers: { "Content-Type": "application/json" },
+              });
+
+              if (!res.ok) {
+                throw new Error("Server responded with an error.");
+              }
+
+              const data = await res.json(); // Await response JSON
+
+              appendMessage("user", message); // Append user message
+              input.value = ""; // Clear input field
+
+              console.log(data); // Log the response data
+
+              appendMessage("bot", data.response); // Append bot response from server
+            } catch (error) {
+              console.error("Error sending message:", error);
+              appendMessage(
+                "bot",
+                "An error occurred. Please try again later."
+              );
+            }
+          }
+        };
+
+        // Function to Append Chat Messages
+        function appendMessage(sender, message) {
+          const chatBody = document.getElementById("chat-body");
+          const messageDiv = document.createElement("div");
+          messageDiv.className =
+            "chat-message " +
+            (sender === "user" ? "user-message" : "bot-message");
+          messageDiv.textContent = message;
+          chatBody.appendChild(messageDiv);
+          chatBody.scrollTop = chatBody.scrollHeight; // Scroll to the bottom
+        }
+      </script>
+    </section>
+
+    <section class="footer">
+      <div class="box-container">
+        <div class="box" style="margin-left: 50px;">
+          <h3>quick links</h3>
+          <a href="{{url_for('index')}}#home"
+            ><i class="fas fa-chevron-right"></i> home</a
+          >
+          <a href="{{url_for('index')}}#services"
+            ><i class="fas fa-chevron-right"></i> services</a
+          >
+          <a href="{{url_for('index')}}#book"
+            ><i class="fas fa-chevron-right"></i>book</a
+          >
+          <a href="{{url_for('index')}}#scans"
+            ><i class="fas fa-chevron-right"></i> scans</a
+          >
+          <a href="{{url_for('index')}}#blogs"
+            ><i class="fas fa-chevron-right"></i> blogs</a
+          >
+          <a href="{{url_for('index')}}#about"
+            ><i class="fas fa-chevron-right"></i> about</a
+          >
+        </div>
+
+
+      <div class="credit">made with 💚 | AVID Minds @ 2024</div>
+    </section>
+    <script>
+      const disease_info = {
+        "Fungal infection": {
+          description:
+            "A fungal infection is caused by fungi and can affect various parts of the body, often the skin.",
+          steps: [
+            "Keep the affected area clean and dry.",
+            "Apply antifungal creams or medications as prescribed.",
+            "Avoid sharing personal items like towels or clothing.",
+            "Wear loose-fitting clothes to reduce moisture buildup.",
+          ],
+        },
+        Allergy: {
+          description:
+            "Allergies occur when your immune system reacts to a foreign substance such as pollen, bee venom, or pet dander.",
+          steps: [
+            "Avoid exposure to allergens.",
+            "Take antihistamines as directed by your doctor.",
+            "Use air purifiers to reduce allergens in the environment.",
+            "Consult an allergist for specialized testing if symptoms persist.",
+          ],
+        },
+        GERD: {
+          description:
+            "Gastroesophageal reflux disease (GERD) is a chronic digestive disorder where stomach acid irritates the food pipe lining.",
+          steps: [
+            "Avoid foods that trigger reflux, such as spicy and fatty foods.",
+            "Eat smaller meals and avoid lying down immediately after eating.",
+            "Elevate the head of your bed to reduce nighttime symptoms.",
+            "Consult a gastroenterologist if symptoms persist or worsen.",
+          ],
+        },
+        AIDS: {
+          description:
+            "AIDS is the final stage of HIV infection, which damages the immune system and makes the body vulnerable to infections.",
+          steps: [
+            "Take antiretroviral medications as prescribed to manage HIV.",
+            "Maintain a healthy diet and lifestyle to boost your immune system.",
+            "Avoid exposure to infections and practice safe behaviors.",
+            "Regularly consult with a healthcare provider for ongoing management.",
+          ],
+        },
+        Diabetes: {
+          description:
+            "Diabetes is a chronic condition that affects how your body processes blood sugar (glucose).",
+          steps: [
+            "Monitor your blood sugar levels regularly.",
+            "Follow a balanced diet low in sugars and carbohydrates.",
+            "Take insulin or other medications as prescribed by your doctor.",
+            "Maintain a regular exercise routine to manage blood sugar levels.",
+          ],
+        },
+        Hypertension: {
+          description:
+            "Hypertension, or high blood pressure, is a condition in which the force of the blood against your artery walls is too high.",
+          steps: [
+            "Reduce salt intake and follow a heart-healthy diet.",
+            "Exercise regularly, aiming for at least 30 minutes a day.",
+            "Take blood pressure medications as prescribed by your doctor.",
+            "Monitor your blood pressure at home and keep regular check-ups.",
+          ],
+        },
+        Migraine: {
+          description:
+            "Migraine is a type of headache characterized by intense, throbbing pain, often accompanied by nausea and sensitivity to light and sound.",
+          steps: [
+            "Rest in a quiet, dark room during a migraine attack.",
+            "Apply a cold compress to the forehead or back of the neck.",
+            "Take prescribed medications at the onset of symptoms.",
+            "Avoid known triggers such as stress, caffeine, and certain foods.",
+          ],
+        },
+        Malaria: {
+          description:
+            "Malaria is a life-threatening disease caused by parasites transmitted through the bites of infected mosquitoes.",
+          steps: [
+            "Take antimalarial medication as prescribed by your doctor.",
+            "Use mosquito repellents and sleep under insecticide-treated bed nets.",
+            "Seek immediate medical attention if symptoms such as fever or chills occur.",
+            "Avoid mosquito-prone areas if possible.",
+          ],
+        },
+        "Chicken pox": {
+          description:
+            "Chicken pox is a highly contagious viral infection that causes an itchy rash and red spots or blisters all over the body.",
+          steps: [
+            "Keep the skin clean and avoid scratching to prevent infection.",
+            "Apply calamine lotion to soothe itching.",
+            "Stay hydrated and rest until the fever subsides.",
+            "Consult a doctor if symptoms become severe or complications arise.",
+          ],
+        },
+        Dengue: {
+          description:
+            "Dengue is a mosquito-borne viral infection that causes flu-like symptoms, such as high fever, headache, and muscle pain.",
+          steps: [
+            "Rest and drink plenty of fluids to prevent dehydration.",
+            "Take paracetamol for fever and pain relief (avoid aspirin or ibuprofen).",
+            "Use mosquito nets and repellents to prevent further bites.",
+            "Seek medical care immediately if symptoms worsen or if bleeding occurs.",
+          ],
+        },
+        Typhoid: {
+          description:
+            "Typhoid is a bacterial infection that can spread through contaminated food and water, leading to high fever, diarrhea, and weakness.",
+          steps: [
+            "Take antibiotics as prescribed by your doctor.",
+            "Maintain good hygiene and wash hands frequently.",
+            "Avoid eating raw or street foods while recovering.",
+            "Rest and stay hydrated with oral rehydration solutions.",
+          ],
+        },
+        "Hepatitis A": {
+          description:
+            "Hepatitis A is a viral liver infection that is often spread through contaminated food or water.",
+          steps: [
+            "Rest and follow a nutritious diet to support liver recovery.",
+            "Avoid alcohol and fatty foods during recovery.",
+            "Practice good hygiene and wash hands thoroughly.",
+            "Consult a doctor for vaccinations to prevent future infections.",
+          ],
+        },
+        "(vertigo) Paroymsal Positional Vertigo": {
+          description:
+            "This type of vertigo is caused by changes in head position, leading to sudden episodes of dizziness.",
+          steps: [
+            "Perform Epley maneuvers as instructed by a healthcare provider.",
+            "Avoid quick head movements to prevent triggering vertigo.",
+            "Stay hydrated and rest when symptoms occur.",
+            "Consult an ENT specialist if symptoms persist.",
+          ],
+        },
+        Acne: {
+          description:
+            "Acne is a skin condition that occurs when hair follicles become clogged with oil and dead skin cells, leading to pimples.",
+          steps: [
+            "Cleanse your face gently with a mild cleanser twice a day.",
+            "Use non-comedogenic skincare products to avoid clogging pores.",
+            "Avoid picking or squeezing pimples to prevent scarring.",
+            "Consult a dermatologist for prescription treatments if needed.",
+          ],
+        },
+        "Urinary tract infection": {
+          description:
+            "A UTI is an infection in any part of the urinary system, including kidneys, bladder, or urethra.",
+          steps: [
+            "Take antibiotics as prescribed by your doctor.",
+            "Drink plenty of water to flush out the bacteria.",
+            "Avoid caffeine, alcohol, and spicy foods during recovery.",
+            "Practice good hygiene to prevent future infections.",
+          ],
+        },
+        Psoriasis: {
+          description:
+            "Psoriasis is a chronic autoimmune condition that causes rapid skin cell buildup, resulting in scaly, itchy patches.",
+          steps: [
+            "Apply moisturizing creams to reduce dryness and scaling.",
+            "Use topical medications as prescribed by a dermatologist.",
+            "Avoid triggers like stress, smoking, and certain foods.",
+            "Consider light therapy or systemic medications for severe cases.",
+          ],
+        },
+        Impetigo: {
+          description:
+            "Impetigo is a contagious bacterial skin infection that causes red sores, usually on the face, hands, and feet.",
+          steps: [
+            "Keep the infected area clean and covered.",
+            "Apply antibiotic ointment as directed by a doctor.",
+            "Avoid scratching to prevent spreading the infection.",
+            "Wash hands frequently to reduce the risk of contagion.",
+          ],
+        },
+      };
+      // Check if a disease is predicted and update the information
+      const predictedDisease = "{{ disease }}"; // Ensure this is correctly set by your backend
+      if (predictedDisease in disease_info) {
+        const info = disease_info[predictedDisease];
+        // Set the description
+        document.getElementById("disease-description").innerText =
+          info.description;
+        // Set the steps
+        const stepsList = document.getElementById("disease-steps");
+        stepsList.innerHTML = ""; // Clear existing steps
+
+        info.steps.forEach((step) => {
+          const li = document.createElement("li");
+          li.textContent = step; // Create a new list item for each step
+          stepsList.appendChild(li); // Append it to the list
+        });
+      } else {
+        // Fallback advice if the disease is not in the predefined list
+        document.getElementById("disease-description").innerText =
+          "Consult a doctor for personalized advice.";
+      }
+    </script>
+  </body>
+</html>

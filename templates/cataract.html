@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-DyZvZKEnZbNwKeOZOHp8cw9AwfC46KnAk1E5nY1n87PrnLrSPiHwKByUOoGFV6O"
+      crossorigin="anonymous"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AViD Minds</title>
+    <link rel="icon" href="./static/images/heart-pulse-solid.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./static/css/style.css" />
+    <style>
+      .articles {
+        padding: 2rem 0;
+        text-align: center;
+      }
+      .articles {
+        padding: 3rem 0; /* Increased padding for more space */
+        text-align: center;
+        /* Light background color for contrast */
+        border-radius: 8px; /* Rounded corners */
+      }
+
+      .articles h2 {
+        font-size: 2.5rem; /* Increased font size for the title */
+        margin-bottom: 1rem; /* Space below the title */
+        color: #171616;
+        font-weight: bolder; /* Darker text for better readability */
+      }
+
+      .articles ul {
+        list-style: none; /* Remove default bullet points */
+        padding: 0; /* Remove default padding */
+      }
+
+      .articles li {
+        margin: 1.5rem 0; /* More space between items */
+      }
+
+      .articles a {
+        text-decoration: none; /* Remove underline */
+        color: #007bff; /* Link color */
+        font-size: 1.5rem; /* Increased font size for links */
+        transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for effects */
+      }
+
+      .articles a:hover {
+        color: #0056b3; /* Darker color on hover */
+        transform: scale(1.05); /* Slightly enlarge on hover */
+      }
+
+      .prediction-form {
+        flex: 1 1 45rem;
+        text-align: center;
+        padding: 2rem;
+        border-radius: 0.5rem;
+      }
+
+      .prediction-form .box {
+        width: 100%;
+        margin: 0.7rem 0;
+        border-radius: 0.5rem;
+        border: var(--border);
+        font-size: 1.6rem;
+        color: var(--black);
+        text-transform: none;
+        padding: 1rem;
+      }
+      #label-container div {
+        color: black;
+        background-color: white;
+        padding: 10px 5px;
+        border: 2px solid;
+        border-radius: 5px;
+        display: none; /* Hide initially */
+      }
+      .img-area img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      <a href="{{url_for('index')}}" class="logo">
+        <i class="fas fa-heartbeat"></i> AViD Minds
+      </a>
+      <nav class="navbar">
+        {% if username %}
+        <a href="{{url_for('index')}}#home">Home</a>
+        <a href="{{url_for('index')}}#services">services</a>
+        <a href="{{url_for('index')}}#book">Book</a>
+        <a href="{{url_for('index')}}#scans">Scans</a>
+        <a href="{{url_for('index')}}#blogs">Blogs</a>
+        <a href="{{url_for('index')}}#about">about</a>
+        <a href="{{url_for('profile')}}"><span class="fas fa-user"></span></a>
+        {% else %}
+        <a href="{{url_for('login')}}">Login</a>
+        {% endif %}
+      </nav>
+
+      <div id="menu-btn" class="fas fa-bars"></div>
+    </header>
+
+    <h1 class="heading" style="margin-bottom: -10rem; margin-top: 8rem">
+      <span>Eye Disease </span> Classification
+    </h1>
+    <section class="book" id="book">
+      <div class="glass-row" style="margin-top: 100px">
+        <div class="prediction-form">
+          <a href="{{url_for('index')}}" class="logo">
+            <i class="fas fa-heartbeat"></i> AViD Minds
+          </a>
+          <br /><br />
+
+          <div class="box">
+            <div class="label" id="label-container"></div>
+            <input
+              class="file-input"
+              type="file"
+              id="file"
+              accept="image/*"
+              hidden
+            />
+
+            <div class="img-area" data-img="">
+              <i class="fa-solid fa-upload"></i>
+              <h3>Upload Image</h3>
+              <p>Image size must be less than <span>2MB</span></p>
+            </div>
+            <button
+              class="select-image btn"
+              style="background-color: rgba(255, 255, 255, 0)"
+            >
+              Select Image
+            </button>
+          </div>
+          <p style="color: white; font-size: 1.3rem; margin-top: 2rem">
+            By continuing, you agree to AViD Minds's
+            <a style="color: #16a085" href="{{url_for('policy')}}"
+              >Terms of Service</a
+            >
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- Articles Section -->
+    <section class="articles">
+      <h2>Learn More About Eye Diseases</h2>
+      <ul>
+        <li>
+          <a href="https://www.aao.org/eye-health/diseases" target="_blank">
+            American Academy of Ophthalmology
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.who.int/news-room/fact-sheets/detail/blindness-and-visual-impairment"
+            target="_blank"
+          >
+            WHO: Blindness and Visual Impairment
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.mayoclinic.org/diseases-conditions/cataracts/symptoms-causes/syc-20310016"
+            target="_blank"
+          >
+            Mayo Clinic: Cataracts
+          </a>
+        </li>
+      </ul>
+      <style>
+        .chatbot-button {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background-color: #16a085;
+          color: white;
+          border: none;
+          border-radius: 50%;
+          width: 60px;
+          height: 60px;
+          font-size: 24px;
+          cursor: pointer;
+          box-shadow: 0 4px 10px rgba(22, 158, 133, 0.5);
+        }
+
+        .chat-container {
+          display: none; /* Hide the chat by default */
+          position: fixed;
+          bottom: 80px;
+          right: 20px;
+          width: 400px;
+          max-height: 500px;
+          background-color: white;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          box-shadow: 0 4px 10px rgba(22, 158, 133, 0.5);
+          overflow-y: auto;
+        }
+
+        .chat-header {
+          background-color: #16a085;
+          color: white;
+          padding: 10px;
+          text-align: center;
+          border-top-left-radius: 8px;
+          border-top-right-radius: 8px;
+        }
+
+        .chat-body {
+          padding: 10px;
+        }
+
+        .chat-message {
+          margin: 5px 0;
+          padding: 8px;
+          border-radius: 4px;
+        }
+
+        .user-message {
+          background-color: #e1f5fe;
+          align-self: flex-end;
+        }
+
+        .bot-message {
+          background-color: #f1f8e9;
+          align-self: flex-start;
+        }
+
+        .chat-input {
+          display: flex;
+          padding: 10px;
+          border-top: 1px solid #ccc;
+        }
+
+        .chat-input input {
+          flex: 1;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+
+        .chat-input button {
+          background-color: #16a085;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          padding: 10px;
+          margin-left: 5px;
+          cursor: pointer;
+        }
+      </style>
+
+      <button class="chatbot-button" id="chatbot-toggle">
+        <i class="fas fa-comment-dots"></i>
+      </button>
+
+      <!-- Chat Container -->
+      <div class="chat-container" id="chat-container">
+        <div class="chat-header">
+          <h3>Chat with us!</h3>
+        </div>
+        <div class="chat-body" id="chat-body">
+          <!-- Chat messages will be appended here -->
+        </div>
+        <div class="chat-input">
+          <input
+            type="text"
+            id="chat-input"
+            placeholder="Type your message..."
+          />
+          <button id="send-button">Send</button>
+        </div>
+      </div>
+
+      <script>
+        // Toggle Chat Window
+        document.getElementById("chatbot-toggle").onclick = function () {
+          const chatContainer = document.getElementById("chat-container");
+          if (
+            chatContainer.style.display === "none" ||
+            chatContainer.style.display === ""
+          ) {
+            chatContainer.style.display = "block";
+          } else {
+            chatContainer.style.display = "none";
+          }
+        };
+
+        // Send Message Handler
+        document.getElementById("send-button").onclick = async function () {
+          const input = document.getElementById("chat-input");
+          const message = input.value;
+
+          console.log(message);
+
+          if (message.trim() !== "") {
+            try {
+              // Send POST request to server
+              const res = await fetch("/chat1", {
+                method: "POST",
+                body: JSON.stringify({ query: message }),
+                headers: { "Content-Type": "application/json" },
+              });
+
+              if (!res.ok) {
+                throw new Error("Server responded with an error.");
+              }
+
+              const data = await res.json(); // Await response JSON
+
+              appendMessage("user", message); // Append user message
+              input.value = ""; // Clear input field
+
+              console.log(data); // Log the response data
+
+              appendMessage("bot", data.response); // Append bot response from server
+            } catch (error) {
+              console.error("Error sending message:", error);
+              appendMessage(
+                "bot",
+                "An error occurred. Please try again later."
+              );
+            }
+          }
+        };
+
+        // Function to Append Chat Messages
+        function appendMessage(sender, message) {
+          const chatBody = document.getElementById("chat-body");
+          const messageDiv = document.createElement("div");
+          messageDiv.className =
+            "chat-message " +
+            (sender === "user" ? "user-message" : "bot-message");
+          messageDiv.textContent = message;
+          chatBody.appendChild(messageDiv);
+          chatBody.scrollTop = chatBody.scrollHeight; // Scroll to the bottom
+        }
+      </script>
+    </section>
+
+    <section class="footer">
+      <div class="box-container">
+        <div class="box" style="margin-left: 50px;">
+          <h3>quick links</h3>
+          <a href="{{url_for('index')}}#home"
+            ><i class="fas fa-chevron-right"></i> home</a
+          >
+          <a href="{{url_for('index')}}#services"
+            ><i class="fas fa-chevron-right"></i> services</a
+          >
+          <a href="{{url_for('index')}}#book"
+            ><i class="fas fa-chevron-right"></i>book</a
+          >
+          <a href="{{url_for('index')}}#scans"
+            ><i class="fas fa-chevron-right"></i> scans</a
+          >
+          <a href="{{url_for('index')}}#blogs"
+            ><i class="fas fa-chevron-right"></i> blogs</a
+          >
+          <a href="{{url_for('index')}}#about"
+            ><i class="fas fa-chevron-right"></i> about</a
+          >
+        </div>
+
+
+      <div class="credit">made with 💚 | AVID Minds @ 2024</div>
+    </section>
+    <script src="./static/js/script.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-5sW0mQXrH8fq7zZIzRHS+0XH1GJcH1o0nTO3M4t7OHiDp6E0g0QG+gG5eH1qAhVb"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-d1EqJ8K5E2x5Ux4FnDR57HW4zd1TpDEeo0n1RQFOz53qOshsOT4pJ9EP5i2d/xY6"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script>
+      const selectImage = document.querySelector(".select-image");
+      const inputFile = document.querySelector("#file");
+      const imgArea = document.querySelector(".img-area");
+      const labelContainer = document.getElementById("label-container");
+
+      const URL = "https://teachablemachine.withgoogle.com/models/WoSyG_WCQ/"; // Replace with the URL where the model and metadata files are located
+      let model, maxPredictions;
+
+      // Load the model and metadata files
+      async function init() {
+        const modelURL = URL + "model.json";
+        const metadataURL = URL + "metadata.json";
+
+        try {
+          model = await tmImage.load(modelURL, metadataURL);
+        } catch (e) {
+          console.error("Error loading the model:", e);
+          return;
+        }
+
+        maxPredictions = model.getTotalClasses();
+
+        // Create divs for the predictions
+        for (let i = 0; i < maxPredictions; i++) {
+          const div = document.createElement("div");
+          labelContainer.appendChild(div);
+        }
+      }
+
+      // Event listener for the file input element
+      inputFile.addEventListener("change", async function (event) {
+        const file = event.target.files[0];
+        const image = document.createElement("img");
+
+        const reader = new FileReader();
+
+        reader.onload = async function (event) {
+          const allImg = imgArea.querySelectorAll("img");
+          allImg.forEach((item) => item.remove());
+          const imgUrl = reader.result;
+          const img = document.createElement("img");
+          img.src = imgUrl;
+          imgArea.appendChild(img);
+          imgArea.classList.add("active");
+          imgArea.dataset.img = file.name; // Use the file name instead of the image name
+
+          image.src = event.target.result;
+          image.onload = async function () {
+            console.log("Image loaded:", image.src);
+            await predict(image); // Use the await keyword when calling predict
+          };
+        };
+
+        reader.readAsDataURL(file); // Use the file object instead of the image object
+      });
+
+      // Event listener for the select image button
+      selectImage.addEventListener("click", function () {
+        inputFile.click();
+      });
+
+      async function predict(image) {
+        if (!model) {
+          console.error("Model not loaded");
+          return;
+        }
+
+        const prediction = await model.predict(image);
+        console.log("Prediction:", prediction);
+
+        // Clear previous labels
+        labelContainer.innerHTML = ""; // Clear the container to ensure only one result is shown
+
+        const messages = {
+          normal: "No defects detected",
+          cataract: "Cataract detected",
+          glaucoma: "Glaucoma detected",
+          retina_disease: "Retina damage detected",
+        };
+
+        for (let i = 0; i < maxPredictions; i++) {
+          if (prediction[i].probability > 0.5) {
+            const message =
+              messages[prediction[i].className] || "Unknown condition";
+            const resultDiv = document.createElement("div");
+            resultDiv.innerHTML = message;
+            labelContainer.appendChild(resultDiv);
+            resultDiv.style.display = "block"; // Show the result after prediction
+            break; // Stop after displaying the first detected condition
+          }
+        }
+      }
+      init();
+    </script>
+  </body>
+</html>
