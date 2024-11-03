@@ -1,76 +1,85 @@
-# HTF24-Team-103
+# AViD Minds
 
-## GitHub submission guide
+<img src="static/images/doctors-animate.svg" align="right" height="300px">
 
-In this Readme, you will find a guide on how to fork this Repository, add files to it, and make a pull request to contribute your changes.
+AViD Minds is a web application developed using Flask, a web framework in Python that aims to assist patients in obtaining the necessary medical care for their needs. The system allows users to register as patients or doctors, book appointments, and predict diseases based on symptoms. Doctors can view and manage appointments, while patients can track their appointments and update their profiles. Additionally, the system provides information on various health-related topics through blog posts and also analyses mental health conditiion of patients.
 
-<details open>
-<summary><h3>1. Login to your GitHub Account by heading over to <a href="https://github.com">github.com</a></h3></summary>
-<br>
-<ul>
-   <li>Open the <a href="https://github.com/cbitosc/HTF24-Team-103">current repo</a> in a new tab.</li>
-   <li>Perform all operations in the newly opened tab, and follow the current tab for instructions.</li>
-</ul>
-</details>
+## Features
 
-<details>
-<summary><h3>2. Fork the Repository</h3></summary>
-<br>
-<ul>
- <li>In the newly opened tab, on the top-right corner, click on <b>Fork</b></li>
- <img src="/images/fork.png">
+1. **User Registration:**
 
- <li>Enter the <b>Repository Name</b> as <b>HTF24-Team-103</b>.</li>
- <li>Then click <b>Create Fork</b> leaving all other fields to their default value.</li>
- <img src="/images/create-fork.png">
- <li>After a few moments, you can view the repo.</li>
-</ul>
-</details>
+   - Patients and doctors can register using the system.
+   - Patients provide basic information such as username, email, and password.
+   - Doctors provide additional information, including their type of specialization.
 
-<details>
-<summary><h3>3. Clone your Repository</h3></summary>
-<br>
-<ul>
- <li>Click on <b>Code</b> and from the dropdown menu copy your <b>web URL</b> in your forked Repository. </li>
- <img src="/images/clone1.png">
- <li>Now open terminal on your local machine.</li>
- <li>Use the following command to clone your forked Repository:</li>
-<code> git clone https://github.com/your-username/HTF24-Team-103.git </code>
-<hr>
- <img src="/images/clone2.png">
+2. **User Login and Logout:**
 
-</ul>
-</details>
+   - Users can log in to access personalized dashboards.
+   - Sessions are managed to ensure secure access, and users can log out when done.
 
-<details>
-<summary><h3>4. Adding files to the Repository</h3></summary>
-<br/>
-<ul>
- <li>While doing it for the first time, create a new branch for your changes.</li>
-   <code> git checkout -b branch-name </code>
-   <li>Add your files or make modifications to existing files.</li>
-   <li>Stage your changes:</li>
-   <code> git add . </code>
-   <li>Commit your changes:</li>
-   <code> git commit -m "Descriptive commit message" </code>
-   <li>Push changes to your fork </li>
-   <code> git push origin branch-name </code>
-   <hr>
-   
- <img src="/images/push.png">
-</ul>
-</details>
+3. **Appointment Booking:**
 
-<details>
-<summary><h3>5. Create a Pull Request</h3></summary>
-   <br>
-<ul>
- <li>Finally, click on the <b>Contribute</b> button and choose <b>Open Pull Request</b>.</li>
- <img src="/images/PR1.png">
- <li>Leaving all fields to their default values, click on <b>Create Pull Request</b>.</li>
- <img src="/images/PR2.png">
- <li>Wait for a few moments, then you are all done</li>
-</ul>
-</details>
+   - Patients can book appointments with doctors.
+   - Doctors can view and manage appointments assigned to them.
 
-## Thanks for participating!
+4. **Disease Prediction:**
+
+   - A machine learning model predicts diseases based on user-input symptoms.
+   - The system uses a Decision Tree Classifier trained on medical data.
+
+5. **Blog Section:**
+
+   - Information on various health-related topics is provided through blog posts.
+   - Topics include Transforming Healthcare, Holistic Health, Nourishing Body, and Importance of Games.
+
+6. **Admin Section:**
+
+   - Admins can access an admin dashboard (admin.html).
+   - Admins have privileged access to manage the system.
+
+7. **Privacy Policy:**
+
+   - Users can view the privacy policy.
+
+8. **Video Call:**
+
+   - Users can access a video call feature (videocall.html).
+
+9. **Scans Section:**
+   - Users can find information on different medical scans, such as brain tumor, lung, and cataract scans.
+
+## Project Structure
+
+- **app.py:** The main Flask application file containing routes and functionality.
+- **templates:** Contains HTML templates for rendering web pages.
+- **static:** Contains static files such as CSS, images, and data.
+- **database.db:** SQLite database file storing user and appointment information.
+- **Data:** Contains CSV files used for training and testing the disease prediction model.
+
+## Getting Started
+
+1. Clone the repository: `git clone https://github.com/mukesh-chevula/HTF24-Team-103.git`
+2. Install dependencies: `pip install -r requirements.txt`
+3. Name the `.env.local ` file to `.env` and provide required credentials.
+4. Run the application: `python app.py`
+
+Visit `[http://localhost:5000]`or `http://127.0.0.1:5000/` in your browser to access the HealthCare Management System.
+
+## Dependencies
+
+- Flask
+- Flask-SQLAlchemy
+- Plotly
+- NumPy
+- TensorFlow
+- Scikit-learn
+
+## Contributors
+
+- Aditya Gella [https://github.com/vihasreddy58]
+- Ashish Reddy Bokka [https://github.com/BAshishReddy]
+- Vihas Reddy Sheelam [https://github.com/vihasreddy58]
+- Daivik Reddy Bokka [https://github.com/BokkaDaivikReddy]
+- Mukesh Mun Vardhan Chevula [https://github.com/mukesh-chevula]
+
+Feel free to contribute to the project by opening issues or creating pull requests.

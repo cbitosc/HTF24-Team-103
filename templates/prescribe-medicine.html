@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AViD Minds</title>
+    <link rel="icon" href="./static/images/heart-pulse-solid.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./static/css/style.css" />
+    <style>
+      label {
+        color: white;
+        font-size: 1.3rem;
+      }
+    </style>
+    <style>
+      /* General Styles */
+      body {
+        background-color: #2c3e50; /* Dark background color */
+        color: white; /* White text for better contrast */
+        font-family: Arial, sans-serif; /* Clean sans-serif font */
+        margin: 0; /* Remove default margin */
+        padding: 0; /* Remove default padding */
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: #34495e; /* Header background color */
+      }
+
+      .navbar a {
+        color: white; /* White text for links */
+        text-decoration: none; /* Remove underline */
+        padding: 0.5rem 1rem; /* Padding for links */
+        transition: background-color 0.3s; /* Smooth background color transition */
+      }
+
+      .navbar a:hover {
+        background-color: #2980b9; /* Change background color on hover */
+      }
+
+      .header .logo {
+        font-size: 1.5rem; /* Logo font size */
+      }
+
+      .book {
+        padding: 2rem; /* Padding for the book section */
+        text-align: center; /* Center text */
+      }
+
+      .glass-row {
+        background: rgba(255, 255, 255, 0.1); /* Glass effect */
+        backdrop-filter: blur(10px); /* Blurring background */
+        border-radius: 10px; /* Rounded corners */
+        padding: 2rem; /* Padding inside the glass effect */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow effect */
+      }
+
+      h1.heading {
+        font-size: 2rem; /* Heading size */
+        margin-bottom: 1.5rem; /* Space below heading */
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem; /* Space below form group */
+      }
+
+      .form-check-container {
+        display: flex;
+        flex-direction: column; /* Stack checkboxes vertically */
+        align-items: flex-start; /* Align items to the start */
+      }
+
+      .form-check {
+        margin-bottom: 0.5rem; /* Space between checkboxes */
+      }
+
+      .btn-primary {
+        background-color: #16a085; /* Button color */
+        color: white; /* Button text color */
+        border: none; /* Remove border */
+        border-radius: 5px; /* Rounded corners */
+        padding: 10px 20px; /* Padding for button */
+        cursor: pointer; /* Pointer cursor on hover */
+        transition: background-color 0.3s; /* Smooth transition */
+      }
+
+      .btn-primary:hover {
+        background-color: #1abc9c; /* Button hover color */
+      }
+
+      /* Chatbot Styles */
+      .chatbot-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #16a085;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(22, 158, 133, 0.5);
+        transition: background-color 0.3s; /* Smooth transition */
+      }
+
+      .chatbot-button:hover {
+        background-color: #1abc9c; /* Change color on hover */
+      }
+
+      .chat-container {
+        display: none; /* Hide the chat by default */
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 400px;
+        max-height: 500px;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(22, 158, 133, 0.5);
+        overflow-y: auto;
+      }
+
+      .chat-header {
+        background-color: #16a085;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
+
+      .chat-body {
+        padding: 10px;
+        max-height: 400px; /* Max height for chat body */
+        overflow-y: auto; /* Enable scrolling */
+      }
+
+      .chat-message {
+        margin: 5px 0;
+        padding: 8px;
+        border-radius: 4px;
+        max-width: 80%; /* Limit width of messages */
+      }
+
+      .user-message {
+        background-color: #e1f5fe;
+        align-self: flex-end;
+      }
+
+      .bot-message {
+        background-color: #f1f8e9;
+        align-self: flex-start;
+      }
+
+      .chat-input {
+        display: flex;
+        padding: 10px;
+        border-top: 1px solid #ccc;
+      }
+
+      .chat-input input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .chat-input button {
+        background-color: #16a085;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 10px;
+        margin-left: 5px;
+        cursor: pointer;
+      }
+
+      .chat-input button:hover {
+        background-color: #1abc9c; /* Button hover color */
+      }
+
+      /* Footer Styles */
+      .footer {
+        text-align: center; /* Center text */
+        padding: 1rem; /* Padding for footer */
+        background-color: #34495e; /* Footer background */
+        position: relative; /* Position relative for footer */
+        bottom: 0; /* Stick to bottom */
+        width: 100%; /* Full width */
+      }
+
+      .credit {
+        color: white; /* White text for credit */
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      <a href="{{url_for('index')}}" class="logo" style="color: white"
+        ><i class="fas fa-heartbeat"></i> AViD Minds</a
+      >
+      <nav class="navbar">
+        {% if username %}
+        <a href="{{url_for('index')}}#home">Home</a>
+        <a href="{{url_for('index')}}#services">services</a>
+        <a href="{{url_for('index')}}#book">Book</a>
+        <a href="{{url_for('index')}}#scans">Scans</a>
+        <a href="{{url_for('index')}}#blogs">Blogs</a>
+        <a href="{{url_for('index')}}#about">about</a>
+        <a href="{{url_for('profile')}}"><span class="fas fa-user"></span></a>
+        {% else %}
+        <a href="{{url_for('login')}}">Login</a>
+        {% endif %}
+      </nav>
+
+      <div id="menu-btn" class="fas fa-bars"></div>
+    </header>
+    <section class="book" id="book">
+      <h1 class="heading"><span>Prescribe</span> Medicine</h1>
+      <div class="glass-row" style="margin-top: 100px">
+        <form method="post">
+          <a href="{{ url_for('index') }}" class="logo">
+            <i class="fas fa-heartbeat"></i> AViD Minds </a
+          ><br /><br />
+
+          <h2 style="color: white; margin-bottom: 1rem">
+            Prescribe Medicine for {{ appointment.name }}
+          </h2>
+          <div class="form-group">
+            <label
+              style="color: white; font-size: 1.3rem; margin-bottom: 0.5rem"
+              >Select Medicines:</label
+            >
+            <div class="form-check-container">
+              {% for medicine in available_medicines %}
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="medicines[]"
+                  value="{{ medicine }}"
+                  class="box"
+                />
+                <label class="form-check-label" style="color: white"
+                  >{{ medicine }}</label
+                >
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+            Submit Prescription
+          </button>
+        </form>
+      </div>
+      <style>
+        .chatbot-button {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background-color: #16a085;
+          color: white;
+          border: none;
+          border-radius: 50%;
+          width: 60px;
+          height: 60px;
+          font-size: 24px;
+          cursor: pointer;
+          box-shadow: 0 4px 10px rgba(22, 158, 133, 0.5);
+        }
+
+        .chat-container {
+          display: none; /* Hide the chat by default */
+          position: fixed;
+          bottom: 80px;
+          right: 20px;
+          width: 400px;
+          max-height: 500px;
+          background-color: white;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          box-shadow: 0 4px 10px rgba(22, 158, 133, 0.5);
+          overflow-y: auto;
+        }
+
+        .chat-header {
+          background-color: #16a085;
+          color: white;
+          padding: 10px;
+          text-align: center;
+          border-top-left-radius: 8px;
+          border-top-right-radius: 8px;
+        }
+
+        .chat-body {
+          padding: 10px;
+        }
+
+        .chat-message {
+          margin: 5px 0;
+          padding: 8px;
+          border-radius: 4px;
+        }
+
+        .user-message {
+          background-color: #e1f5fe;
+          align-self: flex-end;
+        }
+
+        .bot-message {
+          background-color: #f1f8e9;
+          align-self: flex-start;
+        }
+
+        .chat-input {
+          display: flex;
+          padding: 10px;
+          border-top: 1px solid #ccc;
+        }
+
+        .chat-input input {
+          flex: 1;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+
+        .chat-input button {
+          background-color: #16a085;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          padding: 10px;
+          margin-left: 5px;
+          cursor: pointer;
+        }
+      </style>
+
+      <button class="chatbot-button" id="chatbot-toggle">
+        <i class="fas fa-comment-dots"></i>
+      </button>
+
+      <!-- Chat Container -->
+      <div class="chat-container" id="chat-container">
+        <div class="chat-header">
+          <h3>Chat with us!</h3>
+        </div>
+        <div class="chat-body" id="chat-body">
+          <!-- Chat messages will be appended here -->
+        </div>
+        <div class="chat-input">
+          <input
+            type="text"
+            id="chat-input"
+            placeholder="Type your message..."
+          />
+          <button id="send-button">Send</button>
+        </div>
+      </div>
+
+      <script>
+        // Toggle Chat Window
+        document.getElementById("chatbot-toggle").onclick = function () {
+          const chatContainer = document.getElementById("chat-container");
+          if (
+            chatContainer.style.display === "none" ||
+            chatContainer.style.display === ""
+          ) {
+            chatContainer.style.display = "block";
+          } else {
+            chatContainer.style.display = "none";
+          }
+        };
+
+        // Send Message Handler
+        document.getElementById("send-button").onclick = async function () {
+          const input = document.getElementById("chat-input");
+          const message = input.value;
+
+          console.log(message);
+
+          if (message.trim() !== "") {
+            try {
+              // Send POST request to server
+              const res = await fetch("/chat1", {
+                method: "POST",
+                body: JSON.stringify({ query: message }),
+                headers: { "Content-Type": "application/json" },
+              });
+
+              if (!res.ok) {
+                throw new Error("Server responded with an error.");
+              }
+
+              const data = await res.json(); // Await response JSON
+
+              appendMessage("user", message); // Append user message
+              input.value = ""; // Clear input field
+
+              console.log(data); // Log the response data
+
+              appendMessage("bot", data.response); // Append bot response from server
+            } catch (error) {
+              console.error("Error sending message:", error);
+              appendMessage(
+                "bot",
+                "An error occurred. Please try again later."
+              );
+            }
+          }
+        };
+
+        // Function to Append Chat Messages
+        function appendMessage(sender, message) {
+          const chatBody = document.getElementById("chat-body");
+          const messageDiv = document.createElement("div");
+          messageDiv.className =
+            "chat-message " +
+            (sender === "user" ? "user-message" : "bot-message");
+          messageDiv.textContent = message;
+          chatBody.appendChild(messageDiv);
+          chatBody.scrollTop = chatBody.scrollHeight; // Scroll to the bottom
+        }
+      </script>
+    </section>
+
+    <section class="footer">
+      <div class="credit">made with 💚 | AViD Minds @ 2024</div>
+    </section>
+  </body>
+</html>
